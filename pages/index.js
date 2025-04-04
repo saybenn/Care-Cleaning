@@ -23,38 +23,7 @@ export default function Home() {
 
       {/* Hero Section */}
       {/* LANDING & HERO */}
-      <div className="font-montserrat relative w-full h-[500px] sm:h-[600px] lg:h-[100vh] drop-shadow-xl">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/cleaning hero.png"
-            alt="Apollos Cleaning Service"
-            fill
-            className="object-cover"
-            priority
-            quality={80}
-          />{" "}
-          {/* Dark overlay */}
-          {/* <div className="absolute inset-0 bg-black/70"></div>{" "} */}
-        </div>
-
-        {/* Text Overlay */}
-        {/* <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <h1 className="text-gray-900 text-4xl sm:text-5xl lg:text-6xl font-bold">
-            Anything and Everything Gets Cleaned
-          </h1>
-          <p className="text-gray-900  text-lg sm:text-xl mt-3 max-w-2xl">
-            Professional cleaning services for your home, car, and business.
-          </p>
-          <button className="btn-primary mt-6 mb-6 px-6 py-3 bg-gold text-gray-900  font-semibold rounded-lg shadow-md hover:bg-[#b8975e8c] transition-all">
-            Get a Free Quote
-          </button>
-          <h2 className="text-gray-900  text-2xl sm:text-3xl lg:text-4xl font-bold">
-            Veteran Owned & Operated
-          </h2>
-        </div> */}
-        <Hero />
-      </div>
+      <Hero />
 
       {/* Benefits */}
       <Benefits />
