@@ -9,10 +9,11 @@ import Sigue from "@/components/Sigue";
 import ServiceCard from "@/components/ServiceCards";
 import TestimonialCarousel from "@/components/TestimonialCarousel.js";
 import PricingCards from "@/components/PricingCards";
+import Intro from "@/components/Intro";
 
 export default function Home() {
   return (
-    <div className="bg-gray-50 text-gray-900">
+    <div className="bg-[var(--color-background)] text-gray-900">
       <Head>
         <title>Care Cleaning Company - Proto</title>
         <meta
@@ -25,8 +26,8 @@ export default function Home() {
       {/* LANDING & HERO */}
       <Hero />
 
-      {/* Benefits */}
-      <Benefits />
+      {/* Intro */}
+      <Intro />
 
       {/* Services Section */}
       <ServiceCard />

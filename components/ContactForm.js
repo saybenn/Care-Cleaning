@@ -8,232 +8,205 @@ const ContactForm = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [buttonText, setButtonText] = useState("Send");
-
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showFailureMessage, setShowFailureMessage] = useState(false);
 
-  const PHONE_REGEX = new RegExp(
-    /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/gim
-  );
+  const PHONE_REGEX =
+    /^[\+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im;
 
   const handleValidation = () => {
-    let tempErrors = {};
+    const tempErrors = {};
     let isValid = true;
 
-    if (service.length <= 0) {
-      tempErrors[service] = true;
+    if (!name) {
+      tempErrors.name = true;
       isValid = false;
     }
-    if (name.length <= 0) {
-      tempErrors[name] = true;
+    if (!phone || !PHONE_REGEX.test(phone)) {
+      tempErrors.phone = true;
       isValid = false;
     }
-    if (email.length <= 0) {
-      tempErrors[email] = true;
+    if (!email) {
+      tempErrors.email = true;
       isValid = false;
     }
-    if (message.length <= 0) {
-      tempErrors[message] = true;
+    if (!service) {
+      tempErrors.service = true;
+      isValid = false;
+    }
+    if (!message) {
+      tempErrors.message = true;
       isValid = false;
     }
 
-    if (PHONE_REGEX.test(phone) === false) {
-      tempErrors["phone"] = true;
-      isValid = false;
-    }
-
-    setErrors({ ...tempErrors });
+    setErrors(tempErrors);
     return isValid;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let isValidForm = handleValidation();
+    if (!handleValidation()) return;
 
-    if (isValidForm) {
-      setButtonText("Sending");
+    setButtonText("Sending...");
 
-      await fetch("/api/database", {
-        body: JSON.stringify({
-          email: email,
-          name: name,
-          message: message,
-          phone: phone,
-          service: service,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-      });
-      const res = await fetch("/api/contact", {
-        body: JSON.stringify({
-          email: email,
-          name: name,
-          message: message,
-          phone: phone,
-          service: service,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        method: "POST",
-      });
+    await fetch("/api/database", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, phone, message, service }),
+    });
 
-      const { error } = await res.json();
-      if (error) {
-        setShowSuccessMessage(false);
-        setShowFailureMessage(true);
-        setButtonText("Send");
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, phone, message, service }),
+    });
 
-        setName("");
-        setEmail("");
-        setMessage("");
-        setPhone("");
-        setService("");
+    const { error } = await res.json();
 
-        return;
-      }
+    if (error) {
+      setShowFailureMessage(true);
+      setShowSuccessMessage(false);
+    } else {
       setShowSuccessMessage(true);
       setShowFailureMessage(false);
-      setButtonText("Send");
-
-      setName("");
-      setEmail("");
-      setMessage("");
-      setPhone("");
-      setService("");
     }
+
+    setButtonText("Send");
+    setName("");
+    setEmail("");
+    setPhone("");
+    setService("");
+    setMessage("");
   };
 
   return (
-    <section
-      id="contact"
-      className="shadow-up-lg py-16 pb-16 bg-gray-50 w-full"
-    >
-      <div className="border-[0.5px] border-gray-50 max-w-5xl mx-auto bg-white shadow-lg rounded-lg p-8">
-        <h2 className="text-center text-5xl font-bold text-blue-600 mb-3 ">
-          Contact Us
+    <section id="contact" className="py-16  px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-8 sm:p-10">
+        <h2 className="text-center text-3xl sm:text-4xl font-bold text-[var(--color-accent)] mb-2">
+          Get In Touch
         </h2>
-        <span className="block w-5/6 h-0.5 bg-yellow-400 mx-auto mb-10"></span>
+        <div className="h-1 w-1/2 mx-auto bg-[var(--color-secondary)] mb-10 rounded" />
 
-        <form onSubmit={handleSubmit} className="space-y-6 lg:w-full">
-          <div className="flex gap-x-8">
-            {/* Name Field */}
-            <div className="w-1/2">
-              <label className="block text-gray-700 font-medium mb-1">
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Name & Phone */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Name
               </label>
               <input
                 type="text"
-                placeholder="Enter your name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A227]"
+                placeholder="Your name"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 [--tw-ring-color:var(--color-secondary)]"
               />
               {errors.name && (
-                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+                <p className="text-sm text-red-500 mt-1">Name is required.</p>
               )}
             </div>
-            {/* Phone Number Field */}
-            <div className="w-1/2">
-              <label className="block text-gray-700 font-medium mb-1">
-                Phone Number
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Phone
               </label>
               <input
                 type="tel"
-                placeholder="Enter your phone number"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A227]"
+                placeholder="Your phone number"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 [--tw-ring-color:var(--color-secondary)]"
               />
               {errors.phone && (
-                <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+                <p className="text-sm text-red-500 mt-1">
+                  Please enter a valid phone number.
+                </p>
               )}
             </div>
           </div>
 
-          <div className="flex gap-x-8">
-            {" "}
-            {/* Email Field */}
-            <div className="w-1/2">
-              <label className="block text-gray-700 font-medium mb-1">
-                Email Address
+          {/* Email & Service */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Email
               </label>
               <input
                 type="email"
-                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A227]"
+                placeholder="Your email"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 [--tw-ring-color:var(--color-secondary)]"
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                <p className="text-sm text-red-500 mt-1">Email is required.</p>
               )}
             </div>
-            {/* Service Dropdown */}
-            <div className="w-1/2">
-              <label className="block text-gray-700 font-medium mb-1">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 Service Interested In
               </label>
               <select
                 value={service}
                 onChange={(e) => setService(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A227] "
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 [--tw-ring-color:var(--color-secondary)]"
               >
                 <option value="">Select a service</option>
                 <option value="One-Time Cleaning">One-Time Cleaning</option>
                 <option value="Regular Cleaning">Regular Cleaning</option>
                 <option value="Commercial Cleaning">Commercial Cleaning</option>
               </select>
+              {errors.service && (
+                <p className="text-sm text-red-500 mt-1">
+                  Please select a service.
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Message Field */}
+          {/* Message */}
           <div>
-            <label className="block text-gray-700 font-medium mb-1">
+            <label className="block text-sm font-medium text-gray-700 mb-1">
               Message
             </label>
             <textarea
-              placeholder="Enter your message"
               rows={4}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C9A227]"
+              placeholder="Your message"
+              className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 [--tw-ring-color:var(--color-secondary)]"
             />
             {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+              <p className="text-sm text-red-500 mt-1">Message is required.</p>
             )}
           </div>
 
-          {/* Submit Button */}
-          <div className="text-center">
+          {/* Submit */}
+          <div className="text-center pt-4">
             <button
               type="submit"
-              className="w-full bg-yellow-400 text-white font-semibold py-3 rounded-md shadow-md hover:bg-[#cfbc7d] transition-all hover:cursor-pointer"
+              className="w-full sm:w-1/2 bg-[var(--color-accent)] text-white font-semibold py-3 rounded-md hover:bg-[var(--color-secondary)] transition-all"
             >
               {buttonText}
             </button>
           </div>
+
+          {/* Feedback */}
+          {showSuccessMessage && (
+            <p className="text-center text-green-600 mt-4">
+              Thank you! Your message has been delivered.
+            </p>
+          )}
+          {showFailureMessage && (
+            <p className="text-center text-red-600 mt-4">
+              Something went wrong. Please try again.
+            </p>
+          )}
+
+          <p className="text-sm text-center text-gray-500 mt-4">
+            We&apos;ll never share your personal information with anyone else.
+          </p>
         </form>
-
-        {/* Info Message */}
-        <p className="text-center text-gray-600 text-sm mt-4">
-          We&apos;ll never share your personal information with anyone else.
-        </p>
-
-        {/* Success & Failure Messages */}
-        {showSuccessMessage && (
-          <p className="text-center text-green-600 mt-4">
-            Thank You! Your message has been delivered!
-          </p>
-        )}
-        {showFailureMessage && (
-          <p className="text-center text-red-600 mt-4">
-            Something went wrong, please try again.
-          </p>
-        )}
       </div>
     </section>
   );

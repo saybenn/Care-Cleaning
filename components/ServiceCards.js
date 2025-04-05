@@ -5,48 +5,61 @@ const services = [
   {
     title: "Residential Cleaning",
     description:
-      "Thorough and reliable home cleaning services to keep your space fresh and tidy.",
-    image: "/images/residential-cleaning.png",
+      "A spotless home starts with us. We'll keep every corner clean and every surface fresh.",
+    image: "/images/house.png",
   },
   {
-    title: "Commercial Cleaning",
+    title: "Carpet Cleaning",
     description:
-      "Professional cleaning solutions for offices, stores, and business spaces.",
-    image: "/images/commercial-cleaning.png",
+      "Revive your carpets with deep-clean technology that removes dust, allergens, and stains.",
+    image: "/images/carpet.png",
   },
   {
-    title: "Deep Cleaning",
+    title: "Window Cleaning",
     description:
-      "Intensive cleaning for move-ins, move-outs, and post-renovation cleanups.",
-    image: "/images/deep-cleaning.png",
+      "Crystal clear windows, streak-free results. Let the light shine in like never before.",
+    image: "/images/window.png",
+  },
+  {
+    title: "Kitchen Cleaning",
+    description:
+      "From countertops to stovetops, we’ll scrub and sanitize every inch of your kitchen.",
+    image: "/images/kitchen.png",
+  },
+  {
+    title: "Bathroom Cleaning",
+    description:
+      "Pristine bathrooms, free from grime and buildup, so you can relax and refresh.",
+    image: "/images/bathroom.png",
   },
 ];
 
 const ServiceCard = () => {
   return (
-    <section
-      id="services"
-      className="lg:pt-40 lg:pb-10 py-16  text-center bg-gray-50 "
-    >
-      <h2 className="text-3xl font-bold mb-6 lg:text-4xl">
+    <section id="services" className="py-16 px-4 sm:px-6 lg:px-16 text-center">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-gray-800">
         Our Cleaning Services
       </h2>
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {services.map((service, index) => (
           <div
-            id={index}
             key={index}
-            className=" p-6 text-center flex flex-col items-center bg-gray-50"
+            className="p-6 rounded-xl shadow-xl bg-white flex flex-col items-center transition hover:scale-105 duration-300"
           >
             <Image
               src={service.image}
               alt={service.title}
-              width={300}
-              height={300}
-              className="mb-4 rounded-lg shadow-xl"
+              width={160}
+              height={160}
+              className="mb-4"
             />
-            <h3 className="text-2xl font-semibold mb-2">{service.title}</h3>
-            <p className="text-gray-600 text-lg">{service.description}</p>
+            <h3 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-800 mb-2">
+              {service.title}
+            </h3>
+            <p className="text-sm sm:text-base lg:text-lg text-gray-600">
+              {service.description}
+            </p>
           </div>
         ))}
       </div>

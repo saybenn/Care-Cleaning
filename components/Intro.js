@@ -2,21 +2,27 @@ import React from "react";
 
 const Intro = () => {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md max-w-xl mx-auto mt-10 text-center space-y-6">
+    <section className="px-4 py-10 max-w-4xl mx-auto text-center space-y-8 sm:px-6 lg:py-24">
+      {/* Heading */}
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800">
+        Cleaning With Care
+      </h2>
+
       {/* Tabs */}
-      <div className="flex justify-center space-x-4">
-        {["Home", "Office", "Apartment"].map((type) => (
-          <button
-            key={type}
-            className="px-4 py-2 rounded-full border border-gray-300 hover:bg-pink-100 transition"
-          >
-            {type}
-          </button>
-        ))}
+      <div className="flex justify-center bg-[var(--color-primary)] rounded-full border-2 border-gray-900 overflow-hidden text-base sm:text-lg font-bold">
+        <button className="w-full py-3 hover:bg-pink-300 transition">
+          Homes
+        </button>
+        <button className="w-full py-3 border-x-2 border-gray-900 hover:bg-pink-300 transition">
+          Apartments
+        </button>
+        <button className="w-full py-3 hover:bg-pink-300 transition">
+          Offices
+        </button>
       </div>
 
       {/* Call to Action */}
-      <p className="text-lg text-gray-700">
+      <p className="text-base sm:text-lg text-gray-700 px-4">
         Call us and let&rsquo;s discuss your specific needs so we can{" "}
         <span className="font-semibold text-pink-500">
           guarantee your satisfaction
@@ -25,20 +31,23 @@ const Intro = () => {
       </p>
 
       {/* Frequency Options */}
-      <div className="text-sm text-gray-600 space-x-2">
-        <span className="hover:text-pink-500 cursor-pointer">One-Time</span>·
-        <span className="hover:text-pink-500 cursor-pointer">Weekly</span>·
-        <span className="hover:text-pink-500 cursor-pointer">Bi-Weekly</span>·
-        <span className="hover:text-pink-500 cursor-pointer">Monthly</span>
+      <div className="text-sm sm:text-base flex flex-wrap justify-center gap-x-1 text-gray-900 font-bold">
+        <span>One-Time</span>
+        <span>·</span>
+        <span>Weekly</span>
+        <span>·</span>
+        <span>Bi-Weekly</span>
+        <span>·</span>
+        <span>Monthly</span>
       </div>
 
       {/* Book Button */}
       <div>
-        <button className="bg-pink-400 text-white px-6 py-2 rounded-full hover:bg-pink-500 transition">
+        <button className="bg-pink-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-pink-600 transition w-full sm:w-1/2 md:w-1/3">
           Book
         </button>
       </div>
-    </div>
+    </section>
   );
 };
 

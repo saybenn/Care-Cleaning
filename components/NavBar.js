@@ -31,29 +31,35 @@ const Navbar = () => {
           : "-translate-y-full"
       }`}
     >
-      <div className="container mx-auto px-6 py-4 flex justify-between items-center relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between font-inter">
         {/* Logo */}
-        <h1 className="text-xl font-bold text-white text-shadow-lg w-1/2">
-          Care Cleaning Company
+        <h1 className="text-xl md:text-2xl font-bold text-white font-poppins whitespace-nowrap">
+          Care Cleaning Co.
         </h1>
 
         {/* Desktop Nav Links */}
-        <ul className="hidden md:flex space-x-8 text-white font-medium text-xl items-center text-shadow w-1/3 justify-between">
+        <ul className="hidden md:flex gap-10 text-white font-medium text-lg items-center">
           <li>
-            <Link href="#services">Services</Link>
+            <Link href="#services" className="hover:underline">
+              Services
+            </Link>
           </li>
           <li>
-            <Link href="#pricing">Pricing</Link>
+            <Link href="#pricing" className="hover:underline">
+              Pricing
+            </Link>
           </li>
           <li>
-            <Link href="#contact">Contact</Link>
+            <Link href="#contact" className="hover:underline">
+              Contact
+            </Link>
           </li>
         </ul>
 
-        {/* Call Button */}
+        {/* Desktop Call Button */}
         <a
           href="tel:7576395555"
-          className="hidden md:flex items-center bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-yellow-500 transition-all"
+          className="hidden md:flex items-center bg-[var(--color-primary)] text-gray-900 px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-[var(--color-darken)] transition-all"
         >
           <FaPhone className="mr-2" /> Call Us
         </a>
@@ -61,9 +67,9 @@ const Navbar = () => {
         {/* Mobile Call Button */}
         <a
           href="tel:7576395555"
-          className="bg-yellow-400 text-gray-900 px-4 py-1 rounded-lg font-semibold shadow-md hover:bg-yellow-500 transition-all md:hidden flex justify-center items-center"
+          className="md:hidden flex items-center bg-[var(--color-primary)] text-gray-900 px-3 py-2 rounded-lg font-semibold shadow-md hover:bg-[var(--color-darken)] transition-all"
         >
-          <FaPhone className="mr-2 inline" size={"1.3em"} /> Call Us
+          <FaPhone className="mr-2" size="1.2em" /> Call
         </a>
 
         {/* Mobile Menu Button */}
@@ -77,12 +83,12 @@ const Navbar = () => {
 
       {/* Mobile Fullscreen Menu */}
       <div
-        className={`fixed inset-0 bg-blue-900 bg-opacity-90 flex flex-col justify-center items-center space-y-8 text-white text-3xl font-semibold transform ${
+        className={`fixed inset-0 bg-[var(--color-secondary)] bg-opacity-90 flex flex-col justify-center items-center space-y-10 text-white text-3xl font-semibold font-poppins transform transition-transform duration-300 md:hidden ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 md:hidden`}
+        }`}
       >
         <button
-          className="absolute top-6 right-6 text-4xl"
+          className="absolute top-6 right-6 text-4xl z-10"
           onClick={() => setIsMenuOpen(false)}
         >
           <FaTimes />

@@ -9,6 +9,7 @@ const TestimonialCarousel = () => {
     autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false,
   };
 
   const testimonials = [
@@ -33,18 +34,24 @@ const TestimonialCarousel = () => {
   ];
 
   return (
-    <section className="bg-gray-50 lg:py-32 py-16 text-center">
-      <h2 className="text-3xl font-bold mb-6 lg:text-5xl">
+    <section className="py-16 md:py-24 lg:py-32 bg-[var(--color-background)] text-center px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-12">
         What Our Clients Say
       </h2>
-      <div className="w-full overflow-hidden px-4">
+
+      <div className="max-w-4xl mx-auto">
         <Slider {...settings}>
           {testimonials.map((item, index) => (
-            <div key={index} className="p-6 bg-gray-50 rounded-lg ">
-              <p className="text-lg text-gray-800 mb-4 italic lg:text-2xl">
+            <div
+              key={index}
+              className="p-6 sm:p-10 bg-white rounded-xl shadow-lg text-center"
+            >
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-6 italic">
                 “{item.review}”
               </p>
-              <p className="font-semibold text-blue-600">{item.name}</p>
+              <p className="font-semibold text-[var(--color-secondary)] text-lg">
+                {item.name}
+              </p>
               <p className="text-sm text-gray-500">{item.date}</p>
             </div>
           ))}
