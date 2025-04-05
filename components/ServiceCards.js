@@ -6,31 +6,31 @@ const services = [
     title: "Residential Cleaning",
     description:
       "A spotless home starts with us. We'll keep every corner clean and every surface fresh.",
-    image: "/images/house.png",
+    image: "/images/house.webp",
   },
   {
     title: "Carpet Cleaning",
     description:
       "Revive your carpets with deep-clean technology that removes dust, allergens, and stains.",
-    image: "/images/carpet.png",
+    image: "/images/carpet.webp",
   },
   {
     title: "Window Cleaning",
     description:
       "Crystal clear windows, streak-free results. Let the light shine in like never before.",
-    image: "/images/window.png",
+    image: "/images/window.webp",
   },
   {
     title: "Kitchen Cleaning",
     description:
       "From countertops to stovetops, we’ll scrub and sanitize every inch of your kitchen.",
-    image: "/images/kitchen.png",
+    image: "/images/kitchen.webp",
   },
   {
     title: "Bathroom Cleaning",
     description:
       "Pristine bathrooms, free from grime and buildup, so you can relax and refresh.",
-    image: "/images/bathroom.png",
+    image: "/images/bathroom.webp",
   },
 ];
 

@@ -52,7 +52,7 @@ export default function Hero() {
 
         <div className="absolute bottom-0 mt-10 md:mt-0 md:left-1/12">
           <Image
-            src="/images/hero.png"
+            src="/images/hero.webp"
             alt="Woman cleaning"
             width={400}
             height={400}

@@ -7,7 +7,7 @@ const Sigue = () => {
       {/* Image Wrapper */}
       <div className="absolute left-1/2 top-0 transform -translate-x-1/2 -translate-y-2/12 w-3/4 sm:w-2/3 md:w-1/2 lg:w-[500px] h-[300px] md:h-[350px] lg:h-[400px] z-10">
         <Image
-          src="/images/accent3.png"
+          src="/images/accent3.webp"
           alt="Woman cleaning"
           fill
           className="object-contain"
