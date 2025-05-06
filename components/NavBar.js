@@ -58,7 +58,7 @@ const Navbar = () => {
 
         {/* Desktop Call Button */}
         <a
-          href="tel:7576395555"
+          href="tel:7571234567"
           className="hidden md:flex items-center bg-[var(--color-primary)] text-gray-900 px-4 py-2 rounded-lg font-semibold shadow-md hover:bg-[var(--color-darken)] transition-all"
         >
           <FaPhone className="mr-2" /> Call Us
@@ -66,7 +66,7 @@ const Navbar = () => {
 
         {/* Mobile Call Button */}
         <a
-          href="tel:7576395555"
+          href="tel:7571234567"
           className="md:hidden flex items-center bg-[var(--color-primary)] text-gray-900 px-3 py-2 rounded-lg font-semibold shadow-md hover:bg-[var(--color-darken)] transition-all"
         >
           <FaPhone className="mr-2" size="1.2em" /> Call Us

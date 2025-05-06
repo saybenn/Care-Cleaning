@@ -15,11 +15,11 @@ const Footer = () => {
         <div className="flex flex-col items-center sm:items-start gap-3 w-full sm:w-1/2">
           <div className="flex items-center gap-2">
             <FaPhone className="text-lg" />
-            <span>(757) 376-0101</span>
+            <span>(757) 123-4567</span>
           </div>
           <div className="flex items-center gap-2">
             <FaEnvelope className="text-lg" />
-            <span>info@carecleaning.com</span>
+            <span>info@gentlecleaning.com</span>
           </div>
         </div>
 
