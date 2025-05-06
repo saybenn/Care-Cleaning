@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="bg-[var(--color-background)] text-gray-900">
       <Head>
-        <title>Care Cleaning Company - Proto</title>
+        <title>Gentle Cleaning Company - Proto</title>
         <meta
           name="description"
           content="A modern and professional cleaning business template."

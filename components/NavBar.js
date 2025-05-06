@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between font-inter">
         {/* Logo */}
         <h1 className="text-xl md:text-2xl font-bold text-white font-poppins whitespace-nowrap">
-          Care Cleaning Co.
+          Gentle Cleaning Co.
         </h1>
 
         {/* Desktop Nav Links */}
@@ -69,7 +69,7 @@ const Navbar = () => {
           href="tel:7576395555"
           className="md:hidden flex items-center bg-[var(--color-primary)] text-gray-900 px-3 py-2 rounded-lg font-semibold shadow-md hover:bg-[var(--color-darken)] transition-all"
         >
-          <FaPhone className="mr-2" size="1.2em" /> Call
+          <FaPhone className="mr-2" size="1.2em" /> Call Us
         </a>
 
         {/* Mobile Menu Button */}
